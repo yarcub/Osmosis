@@ -3,7 +3,10 @@ package os.flash.osmosis.geolocation
 	import flash.events.Event;
 	
 	/**
-	 * ...
+	 * Event triggered whenever a new position is available
+	 * 
+	 * @see http://dev.w3.org/geo/api/spec-source.html#position_interface
+	 * 
 	 * @author Nuno Rosa
 	 */
 	public class GeoLocationEvent extends Event 
@@ -27,7 +30,7 @@ package os.flash.osmosis.geolocation
 		
 		public override function toString():String 
 		{ 
-			return formatToString("GeoLocationEvent", "type", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("GeoLocationEvent", "type", "timestamp", "coordinates", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 		public function get timestamp():int 

@@ -3,8 +3,10 @@ package os.flash.osmosis.geolocation
 	import flash.events.Event;
 	
 	/**
-	 * Geolocation position object interface
-	 * http://dev.w3.org/geo/api/spec-source.html#position_error_interface
+	 * Event triggered whenever an error occured with a position request
+	 * 
+	 * Similar to Geolocation position error object interface
+	 * @see http://dev.w3.org/geo/api/spec-source.html#position_error_interface
 	 * 
 	 * @author Nuno Rosa
 	 */
@@ -33,7 +35,7 @@ package os.flash.osmosis.geolocation
 		
 		public override function toString():String 
 		{ 
-			return formatToString("GeoLocationErrorEvent", "type", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("GeoLocationErrorEvent", "type", "code", "message", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 		public function get code():int 
