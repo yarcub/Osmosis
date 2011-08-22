@@ -12,12 +12,14 @@ package os.flash.osmosis.geolocation
 	 */
 	public class GeoLocation extends EventDispatcher
 	{	
-		private var osmosisInstance:String;
+		public static const FEATURE_NAMESPACE:String = "geolocation";
+		
+		private var featureInstance:String;
 		
 		public function GeoLocation(osmosisInstance:String)
 		{
 			super();
-			this.osmosisInstance = osmosisInstance + ".geolocation";
+			this.featureInstance = osmosisInstance + "." + FEATURE_NAMESPACE;
 			initialize();
 		}
 		
@@ -28,28 +30,27 @@ package os.flash.osmosis.geolocation
 		}
 		
 		public function isSupported():Boolean {
-			trace(osmosisInstance + "geolocation.isGeolocationSupported");
-			return ExternalInterface.call(osmosisInstance + "geolocation.isSupported");
+			return ExternalInterface.call(featureInstance + ".isSupported");
 		}
 		
 		public function requestCurrentPosition(options:GeoLocationOptions = null):void {
 			if(options == null){
-				ExternalInterface.call(osmosisInstance + ".getCurrentPosition");
+				ExternalInterface.call(featureInstance + ".getCurrentPosition");
 			}else {
-				ExternalInterface.call(osmosisInstance + ".getCurrentPosition", options.toString());
+				ExternalInterface.call(featureInstance + ".getCurrentPosition", options.toString());
 			}
 		}
 		
 		public function watchPosition(options:GeoLocationOptions = null):int{
 			if(options == null){
-				return ExternalInterface.call(osmosisInstance + ".watchPosition");
+				return ExternalInterface.call(featureInstance + ".watchPosition");
 			}else {
-				return ExternalInterface.call(osmosisInstance + ".watchPosition", options.toString());
+				return ExternalInterface.call(featureInstance + ".watchPosition", options.toString());
 			}
 		}
 		
 		public function clearWatch(id:int):void {
-			ExternalInterface.call(osmosisInstance + ".clearWatch", id);
+			ExternalInterface.call(featureInstance + ".clearWatch", id);
 		}
 		
 		private function onGeoLocationSucess(positionObj:Object):void {
